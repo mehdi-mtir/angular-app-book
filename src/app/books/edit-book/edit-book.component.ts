@@ -19,7 +19,7 @@ export class EditBookComponent implements OnInit {
 
   editBook(f : NgForm){
     this.service.editBook(this.book!).subscribe(
-      book=>this.router.navigate(['/list'])
+      book=>this.router.navigate(['/books'])
     )
 
   }

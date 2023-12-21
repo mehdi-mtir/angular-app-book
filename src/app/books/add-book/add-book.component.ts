@@ -22,7 +22,7 @@ export class AddBookComponent {
       f.value.title,
       f.value.author,
       f.value.price).subscribe(
-      book=>this.router.navigate(['/list'])
+      book=>this.router.navigate(['/books'])
     )
 
   }

@@ -1,7 +1,7 @@
 <app-search (searchEvent)="searchBook($event)"></app-search>
 
 <h2>Liste des livres</h2>
-<button class="btn btn-success" [routerLink]="['/add']">Ajouter un livre</button>
+<button class="btn btn-success" [routerLink]="['/books/add']">Ajouter un livre</button>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -23,7 +23,7 @@
       <td>
         <button
           class="btn btn-primary"
-          [routerLink]="['/edit', book.id]">
+          [routerLink]="['/books/edit', book.id]">
           Editer
         </button>
       </td>
