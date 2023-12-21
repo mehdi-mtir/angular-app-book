@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
   private books : Book[] = [];
-  private url = "http://localhost:3000/books";
+  private url = "http://localhost:3000/660/books";
   options = {headers : new HttpHeaders(
     {
       'content-type' : "application/json",
+      'Authorization' : "Bearer " + window.localStorage.getItem("accessToken")
     }
   )}
 
   constructor(private httpClient : HttpClient) { }
 
   getBooks():Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.url);
+    return this.httpClient.get<Book[]>(this.url, this.options);
     //return [...this.books];
   }
 
