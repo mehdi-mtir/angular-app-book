@@ -18,8 +18,13 @@ export class AddBookComponent {
   }*/
   addBook(f: NgForm){
     //console.log(f);
-    this.service.addBook(f.value.title, f.value.author, f.value.price);
-    this.router.navigate(['/list']);
+    this.service.addBook(
+      f.value.title,
+      f.value.author,
+      f.value.price).subscribe(
+      book=>this.router.navigate(['/list'])
+    )
+
   }
 
 }

@@ -1,0 +1,10 @@
+<div *ngIf="book !== undefined">
+  <h2>Détails :</h2>
+  <ul >
+    <li>Id : {{book!.id}}</li>
+    <li>Titre : {{book!.title}}</li>
+    <li>Auteur : {{book!.author}}</li>
+    <li>Prix : {{book!.price}}</li>
+  </ul>
+  <button class="btn btn-danger" >Fermer</button>
+</div>

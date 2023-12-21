@@ -10,7 +10,7 @@ import { BookService } from '../services/book.service';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit {
-  book? : Book;
+  book = new Book(0,'','',0);
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -18,15 +18,19 @@ export class EditBookComponent implements OnInit {
     private router : Router){}
 
   editBook(f : NgForm){
-    this.service.editBook(this.book!);
-    this.router.navigate(['/list']);
+    this.service.editBook(this.book!).subscribe(
+      book=>this.router.navigate(['/list'])
+    )
+
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params=>{
-        this.book = this.service.getBookById(+params['id']);
-        console.log(this.book);
+        this.service.getBookById(+params['id']).subscribe(
+          book => this.book = book
+        )
+        //console.log(this.book);
       }
     )
   }

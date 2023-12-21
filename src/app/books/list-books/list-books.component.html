@@ -1,6 +1,4 @@
-<h2>Recherche : </h2>
-  <input type="search" value="" class="form-control" #search>
-  <button class="btn btn-primary" (click)="searchBook(search.value)">Rechercher</button>
+<app-search (searchEvent)="searchBook($event)"></app-search>
 
 <h2>Liste des livres</h2>
 <button class="btn btn-success" [routerLink]="['/add']">Ajouter un livre</button>
@@ -18,23 +16,23 @@
   <tbody>
     <tr *ngFor="let book of filteredBooks">
       <th scope="row">{{book.id}}</th>
-      <td>{{book.title}}</td>
+      <td>{{book.title | uppercase}}</td>
       <td>{{book.author}}</td>
-      <td>{{book.price}}</td>
+      <td>{{book.price | currency:'DTN':'code':'2.3-3' }}</td>
       <td><button class="btn btn-info" (click)="showDetail(book)">Voir détails</button></td>
-      <td><button class="btn btn-primary" [routerLink]="['/edit', book.id]">Editer</button></td>
+      <td>
+        <button
+          class="btn btn-primary"
+          [routerLink]="['/edit', book.id]">
+          Editer
+        </button>
+      </td>
       <td><button class="btn btn-danger" (click)="deleteBook(book.id)">Supprimer</button></td>
     </tr>
+    <!--tr *ngFor="let book of filteredBooks" app-book [bookItem]="book"></tr-->
   </tbody>
 </table>
 
-<div *ngIf="activeBook !== undefined">
-  <h2>Détails :</h2>
-  <ul >
-    <li>Id : {{activeBook!.id}}</li>
-    <li>Titre : {{activeBook!.title}}</li>
-    <li>Auteur : {{activeBook!.author}}</li>
-    <li>Prix : {{activeBook!.price}}</li>
-  </ul>
-  <button class="btn btn-danger" (click)="showDetail(undefined)">Fermer</button>
-</div>
+<app-detail-book
+  [book]="activeBook">
+</app-detail-book>
